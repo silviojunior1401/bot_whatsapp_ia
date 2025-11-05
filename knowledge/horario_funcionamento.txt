@@ -1,0 +1,7 @@
+Segunda-Feira: 8h as 17h
+Terça-Feira: 8h as 17h
+Quarta-Feira: 8h as 17h
+Quinta-Feira: 8h as 17h
+Sexta-Feira: 8h as 17h
+Sabado: 10h as 12h
+Domingo: fechado
