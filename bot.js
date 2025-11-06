@@ -1,11 +1,11 @@
 /**
- * Baileys
- * npm install @whiskeysockets/baileys
- * npm install qrcode-terminal
- * npm install pino
- * npm install @hapi/boom
- * npm install axios
- */
+Baileys
+npm install @whiskeysockets/baileys
+npm install qrcode-terminal
+npm install pino
+npm install @hapi/boom
+npm install axios
+ */
 
 const {
 	default: makeWASocket,
@@ -23,7 +23,10 @@ require("dotenv").config();
 
 const ollamaUrl = "http://localhost:11434";
 const conversationHistory = new Map();
-const KNOWLEDGE_FOLDER = path.join(__dirname, 'knowledge');
+const KNOWLEDGE_FOLDER = path.join(__dirname, "knowledge");
+
+// NOVO: Mapa para armazenar preferências de idioma por usuário
+const userPreferences = new Map();
 
 // Números autorizados
 const numerosAutorizados = process.env.TELEFONES_PERMITIDOS
@@ -41,19 +44,19 @@ console.log(
 
 function loadKnowledgeBase() {
 	console.log("Carregando base de conhecimento...");
-	if(!fs.existsSync(KNOWLEDGE_FOLDER)){
+	if (!fs.existsSync(KNOWLEDGE_FOLDER)) {
 		fs.mkdirSync(KNOWLEDGE_FOLDER, { recursive: true });
-		console.log("Pasta de conhecimento criada:", KNOWLEDGE_FOLDER);	
-		return '';
+		console.log("Pasta de conhecimento criada:", KNOWLEDGE_FOLDER);
+		return "";
 	}
 
-	let allContent = '';
+	let allContent = "";
 	const files = fs.readdirSync(KNOWLEDGE_FOLDER);
 
 	files.forEach((file) => {
-		if(file.endsWith('.txt') || file.endsWith('.json')){
+		if (file.endsWith(".txt") || file.endsWith(".json")) {
 			const filePath = path.join(KNOWLEDGE_FOLDER, file);
-			const content = fs.readFileSync(filePath, 'utf-8');
+			const content = fs.readFileSync(filePath, "utf-8");
 			allContent += `\n\nConteúdo do arquivo ${file}:\n${content}`;
 			console.log(`Carregado arquivo: ${file}`);
 		}
@@ -96,7 +99,6 @@ async function connectToWhatsApp() {
 			);
 		} else if (connection === "open") {
 			console.log("Conectado ao WhatsApp Web!");
-			// Verificar ollama
 			axios
 				.get(`${ollamaUrl}/v1/models`, { timeout: 5000 })
 				.then((response) => {
@@ -119,7 +121,6 @@ async function connectToWhatsApp() {
 
 		const from = msg.key.remoteJid;
 
-		// Responder somente autorizados
 		const numeroRemetente = from.split("@")[0];
 		if (!numerosAutorizados.includes(numeroRemetente)) {
 			console.log("mensagem ignorada");
@@ -133,8 +134,47 @@ async function connectToWhatsApp() {
 			"";
 
 		console.log("Nova mensagem recebida:", from, ": ", text);
-		
-		// Responder à mensagem
+
+		if (text.toLowerCase() === "/ajuda") {
+			const helpMessage = `
+				Olá! 👋 Eu sou um bot assistente.
+
+				**Como eu funciono:**
+				1.  Eu respondo perguntas com base em uma base de conhecimento específica.
+				2.  Eu uso um modelo de linguagem (Ollama) para entender e formular as respostas.
+				3.  Eu mantenho um breve histórico de nossa conversa para entender o contexto.
+
+				**Comandos disponíveis:**
+				* **/ajuda**: Mostra esta mensagem de ajuda.
+				* **/Hacker <idioma>**: (Modo Hacker) Muda o meu idioma de resposta para você. Ex: \`/Hacker french\`
+			`;
+			await sock.sendMessage(
+				from,
+				{ text: helpMessage.trim() },
+				{ quoted: msg }
+			);
+			console.log("Mensagem de ajuda enviada para", from);
+			return; // Importante: não processar a mensagem com o Ollama
+		}
+
+		if (text.toLowerCase().startsWith("/hacker ")) {
+			const parts = text.split(" ");
+			if (parts.length > 1) {
+				const newLang = parts.slice(1).join(" "); // Pega tudo depois de /hacker // Armazena a preferência do usuário
+				userPreferences.set(from, { language: newLang });
+				const confirmationMsg = `Modo Hacker ativado! 👾 Responderei a você em: ${newLang}`;
+				await sock.sendMessage(
+					from,
+					{ text: confirmationMsg },
+					{ quoted: msg }
+				);
+				console.log(
+					`Idioma alterado para ${newLang} para o usuário ${from}`
+				);
+				return;
+			}
+		}
+
 		try {
 			// Verifica se o Ollama está acessível
 			const isOnline = await axios
@@ -145,7 +185,9 @@ async function connectToWhatsApp() {
 			if (!isOnline) {
 				await sock.sendMessage(
 					from,
-					{ text: "Desculpe, o servidor Ollama não está acessível no momento." },
+					{
+						text: "Desculpe, o servidor Ollama não está acessível no momento.",
+					},
 					{ quoted: msg }
 				);
 				console.error("Ollama não está acessível.");
@@ -154,9 +196,14 @@ async function connectToWhatsApp() {
 
 			const history = conversationHistory.get(from) || [];
 
-			let systemMessage = 'Você é um assistente útil que responde em português brasileiro.';
+			const userPrefs = userPreferences.get(from) || {
+				language: "português brasileiro",
+			};
+			const userLanguage = userPrefs.language;
 
-			if(knowledgeBase){
+			let systemMessage = `Você é um assistente útil que responde em ${userLanguage}.`;
+
+			if (knowledgeBase) {
 				systemMessage += ` Use a seguinte base de conhecimento para ajudar a responder as perguntas do usuário: ${knowledgeBase}`;
 			}
 
@@ -166,27 +213,29 @@ async function connectToWhatsApp() {
 				{ role: "user", content: text },
 			];
 
-			const response = await axios.post(`${ollamaUrl}/v1/chat/completions`, {
-				model: "gemma3:4b",
-				messages,
-				temperature: 0.7,
-			}, { timeout: 60000 });
+			const response = await axios.post(
+				`${ollamaUrl}/v1/chat/completions`,
+				{
+					model: "gemma3:4b",
+					messages,
+					temperature: 0.7,
+				},
+				{ timeout: 60000 }
+			);
 
 			const aiResponse = response.data.choices[0].message.content;
 			history.push({ role: "user", content: text });
 			history.push({ role: "assistant", content: aiResponse });
 			conversationHistory.set(from, history.slice(-20)); // Mantém apenas as últimas 20 mensagens
-			await sock.sendMessage(
-				from,
-				{ text: aiResponse },
-				{ quoted: msg }
-			);
+			await sock.sendMessage(from, { text: aiResponse }, { quoted: msg });
 			console.log("Resposta enviada: ", aiResponse);
 		} catch (e) {
 			console.error("Erro: ", e);
 			await sock.sendMessage(
 				from,
-				{ text: "Desculpe, ocorreu um erro ao processar sua mensagem." },
+				{
+					text: "Desculpe, ocorreu um erro ao processar sua mensagem.",
+				},
 				{ quoted: msg }
 			);
 		}

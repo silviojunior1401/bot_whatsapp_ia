@@ -1,2 +1,0 @@
-formatação netbook positivo: usar pendrive de 32gb, baixarimagem positivo_2025.iso, usar a telca de quick boot f7
-formatação netbook multilaser: usar pendrive de 64gb, baixarimagem multilaser_2025.iso, usar a telca de quick boot f11. obs: tentar verificar se o computador não possui imagem de restauração antes de iniciar a formatação.

@@ -1,0 +1,101 @@
+# Base de Conhecimento - Comércio de Naves Interestelares "Velocidade da Luz" #
+
+## Sobre Nós ##
+A "Velocidade da Luz" é a maior revendedora de naves espaciais novas e usadas da Via Láctea. Nossa missão é conectar exploradores, corporações e aventureiros aos seus destinos com segurança e estilo. Não vendemos apenas naves, vendemos liberdade.
+
+## Horário de Funcionamento (Padrão Terrestre Unificado - UTC) ##
+Nosso atendimento ao cliente e suporte técnico operam 24/7, pois o universo nunca dorme.
+As concessionárias físicas possuem horários locais.
+
+## Nossos Pátios (Localizações) ##
+Nossas principais concessionárias e centros de aluguel estão estrategicamente localizados:
+
+1.  **Estação Orbital Terra-Luna (EOTL)**: Nosso showroom principal. Fácil acesso via transporte sub-orbital.
+    * Horário: 08:00 - 20:00 (UTC)
+2.  **Nova Ares, Marte**: Especializado em veículos de exploração e cargueiros.
+    * Horário: 09:00 - 17:00 (Horário Padrão Marciano)
+3.  **Anéis de Titã, Saturno**: Foco em naves de luxo e turismo.
+    * Horário: 10:00 - 22:00 (Horário Local de Titã)
+4.  **Entreposto Kepler-186f**: Atendendo a clientes na fronteira da exploração.
+    * Horário: Apenas com hora marcada.
+
+---
+
+## Naves Disponíveis para VENDA ##
+
+### Classe 1: Exploradores Solo (Curto Alcance) ###
+
+* **Modelo: "Vespa" Scout S-1**
+    * **Descrição**: Ágil, rápida e perfeita para exploração planetária ou viagens rápidas no sistema.
+    * **Capacidade**: 1 piloto.
+    * **Motor**: Motor de dobra Nível 1 (Apenas viagens intra-sistema).
+    * **Preço**: 1.2 Milhão de Créditos Galácticos.
+    * **Disponível em**: EOTL (Terra-Luna), Nova Ares (Marte).
+
+* **Modelo: "Nômade" Deep-Surveyor**
+    * **Descrição**: Equipado com laboratório compacto e scanners de longo alcance. Ideal para cientistas e garimpeiros de asteroides.
+    * **Capacidade**: 1 piloto, 1 leito de descanso.
+    * **Motor**: Motor de dobra Nível 2.
+    * **Preço**: 3.5 Milhões de Créditos.
+    * **Disponível em**: Nova Ares (Marte), Entreposto Kepler-186f.
+
+### Classe 2: Cargueiros Médios ###
+
+* **Modelo: "Mula" Hauler-4K**
+    * **Descrição**: O cavalo de batalha da galáxia. Confiável, modular e com grande capacidade de carga.
+    * **Capacidade**: 2 tripulantes (piloto, co-piloto). 4.000m³ de carga.
+    * **Motor**: Motor de dobra Nível 2.
+    * **Preço**: 8 Milhões de Créditos.
+    * **Disponível em**: Nova Ares (Marte).
+
+* **Modelo: "Contrabandista" Runner-X (Modificada)**
+    * **Descrição**: Oficialmente um "cargueiro leve", mas com motores superalimentados e blindagem de casco secreta. Venda restrita.
+    * **Capacidade**: 2 tripulantes. 500m³ de carga (oculta).
+    * **Motor**: Motor de dobra Nível 3 (Modificado).
+    * **Preço**: 15 Milhões de Créditos (Verificar licença de porte).
+    * **Disponível em**: Anéis de Titã (local secreto).
+
+### Classe 3: Naves de Luxo e Turismo ###
+
+* **Modelo: "Orion" Star-Yacht 808**
+    * **Descrição**: O ápice do luxo. Casco de obsidiana polida, interior com gravidade artificial customizável e um chef robótico 5 estrelas.
+    * **Capacidade**: 4 passageiros de luxo, 2 tripulantes.
+    * **Motor**: Motor de dobra Nível 4 (Silencioso).
+    * **Preço**: 45 Milhões de Créditos.
+    * **Disponível em**: EOTL (Terra-Luna), Anéis de Titã.
+
+---
+
+## Naves Disponíveis para ALUGUEL (Frota "Impulso") ##
+
+### Plano Aventura (Aluguel Diário) ###
+
+* **Modelo: "Vespa" Scout S-1**
+    * **Descrição**: Perfeito para um passeio rápido pelos anéis de Saturno ou para visitar as crateras de Marte.
+    * **Taxa**: 1.500 Créditos por ciclo de 24h.
+    * **Disponível em**: EOTL (Terra-Luna), Nova Ares (Marte), Anéis de Titã.
+
+* **Modelo: "Távola" Shuttle T-5**
+    * **Descrição**: Um "minivan" espacial. Confortável e seguro para viagens familiares dentro do sistema solar.
+    * **Capacidade**: 6 pessoas.
+    * **Taxa**: 3.000 Créditos por ciclo de 24h.
+    * **Disponível em**: EOTL (Terra-Luna).
+
+### Plano Corporativo (Aluguel Mensal) ###
+
+* **Modelo: "Mula" Hauler-4K**
+    * **Descrição**: Para empresas que precisam de logística de carga sem o compromisso de compra. Inclui seguro contra piratas (básico).
+    * **Taxa**: 120.000 Créditos por mês.
+    * **Disponível em**: Nova Ares (Marte).
+
+### Plano Expedição (Aluguel de Longo Prazo - Mínimo 6 meses) ###
+
+* **Modelo: "Nômade" Deep-Surveyor**
+    * **Descrição**: Para expedições científicas ou de prospecção de longo prazo.
+    * **Taxa**: 60.000 Créditos por mês.
+    * **Disponível em**: Entreposto Kepler-186f.
+
+## Informações Adicionais ##
+* **Seguro**: Todas as naves vendidas incluem 1 ano de seguro "Casco Cheio" da InterSurance.
+* **Financiamento**: Oferecemos financiamento através do Banco Interestelar de Marte (BIM).
+* **Test-Drive**: Test-drives estão disponíveis em todas as localizações, exceto Kepler-186f (requer permissão de voo Nível Gama).
