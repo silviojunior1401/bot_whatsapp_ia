@@ -21,7 +21,7 @@ const path = require("path");
 
 require("dotenv").config();
 
-const ollamaUrl = "http://localhost:11434";
+const ollamaUrl = "http://localhost:11434"; // Alterar porta para 1234 se for LMStudio
 const conversationHistory = new Map();
 const KNOWLEDGE_FOLDER = path.join(__dirname, "knowledge");
 
